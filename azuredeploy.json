@@ -57,10 +57,21 @@
             "metadata": {
                 "description": "Specific version of SQ to download e.g. 7.9.1 or 8.0. Leave blank or set to 'Latest' for most recent version."
             }
+        },
+        "deploymentTelemetryKey":{
+            "type": "string"
+        },
+        "sqlurl":{
+            "type": "securestring"
+        },
+        "sqluser":{
+            "type": "securestring"
+        },
+        "sqlpass":{
+            "type": "securestring"
         }
     },
     "variables": {
-        "deploymentTelemetryKey": "e15aa4db-a1cc-4622-844f-e7dd01596983"
     },
     "resources": [
         {
@@ -111,9 +122,12 @@
                         "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
                     ],
                     "properties": {
-                        "Deployment_Telemetry_Instrumentation_Key": "[variables('deploymentTelemetryKey')]",
+                        "Deployment_Telemetry_Instrumentation_Key": "[parameters('deploymentTelemetryKey')]",
                         "SonarQubeEdition": "[parameters('SonarQube Edition')]",
-                        "SonarQubeVersion": "[parameters('SonarQube Version')]"
+                        "SonarQubeVersion": "[parameters('SonarQube Version')]",
+                        "sonar.jdbc.url" :"[parameters('sqlurl')]",
+                        "sonar.jdbc.username":"[parameters('sqluser')]",
+                        "sonar.jdbc.password":"[parameters('sqlpass')]"
                     }
                 },
                 {
