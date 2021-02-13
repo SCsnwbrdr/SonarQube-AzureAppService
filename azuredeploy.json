@@ -70,7 +70,7 @@
                 "description": "SQL Password"
             }
         },
-        "servers_example_sonartest_name": {
+        "SQL Server Name": {
             "defaultValue": "example-sonartest",
             "type": "String",
             "metadata": {
@@ -79,13 +79,13 @@
         }
     },
     "variables": {
-        "sqlUrl":"[concat('jdbc:sqlserver://',parameters('servers_example_sonartest_name'),'.database.windows.net:1433;database=sonar;encrypt=true;')]"
+        "sqlUrl":"[concat('jdbc:sqlserver://',parameters('SQL Server Name'),'.database.windows.net:1433;database=sonar;encrypt=true;')]"
     },
     "resources": [
         {
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2019-06-01-preview",
-            "name": "[parameters('servers_example_sonartest_name')]",
+            "name": "[parameters('SQL Server Name')]",
             "location": "[parameters('siteLocation')]",
             "kind": "v12.0",
             "properties": {
@@ -113,9 +113,9 @@
         {
             "type": "Microsoft.Sql/servers/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/CreateIndex')]",
+            "name": "[concat(parameters('SQL Server Name'), '/CreateIndex')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -124,9 +124,9 @@
         {
             "type": "Microsoft.Sql/servers/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/DbParameterization')]",
+            "name": "[concat(parameters('SQL Server Name'), '/DbParameterization')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -135,9 +135,9 @@
         {
             "type": "Microsoft.Sql/servers/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/DefragmentIndex')]",
+            "name": "[concat(parameters('SQL Server Name'), '/DefragmentIndex')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -146,9 +146,9 @@
         {
             "type": "Microsoft.Sql/servers/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/DropIndex')]",
+            "name": "[concat(parameters('SQL Server Name'), '/DropIndex')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -157,9 +157,9 @@
         {
             "type": "Microsoft.Sql/servers/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/ForceLastGoodPlan')]",
+            "name": "[concat(parameters('SQL Server Name'), '/ForceLastGoodPlan')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Enabled"
@@ -168,10 +168,10 @@
         {
             "type": "Microsoft.Sql/servers/auditingPolicies",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/Default')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "auditingState": "Disabled"
@@ -180,9 +180,9 @@
         {
             "type": "Microsoft.Sql/servers/auditingSettings",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 0,
@@ -196,10 +196,10 @@
         {
             "type": "Microsoft.Sql/servers/databases",
             "apiVersion": "2020-08-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "sku": {
                 "name": "GP_Gen5",
@@ -222,10 +222,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/auditingPolicies",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/Default')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "auditingState": "Disabled"
@@ -234,9 +234,9 @@
         {
             "type": "Microsoft.Sql/servers/databases/auditingSettings",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 0,
@@ -248,9 +248,9 @@
         {
             "type": "Microsoft.Sql/servers/databases/extendedAuditingSettings",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 0,
@@ -262,10 +262,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/Default')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "state": "Disabled"
@@ -274,9 +274,9 @@
         {
             "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
             "apiVersion": "2020-02-02-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "state": "Disabled"
@@ -285,10 +285,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/current')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/current')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "status": "Disabled"
@@ -297,9 +297,9 @@
         {
             "type": "Microsoft.Sql/servers/databases/vulnerabilityAssessments",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/master/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/master/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "recurringScans": {
@@ -311,9 +311,9 @@
         {
             "type": "Microsoft.Sql/servers/encryptionProtector",
             "apiVersion": "2015-05-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/current')]",
+            "name": "[concat(parameters('SQL Server Name'), '/current')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "kind": "servicemanaged",
             "properties": {
@@ -324,9 +324,9 @@
         {
             "type": "Microsoft.Sql/servers/extendedAuditingSettings",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 0,
@@ -340,9 +340,9 @@
         {
             "type": "Microsoft.Sql/servers/keys",
             "apiVersion": "2015-05-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/ServiceManaged')]",
+            "name": "[concat(parameters('SQL Server Name'), '/ServiceManaged')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "kind": "servicemanaged",
             "properties": {
@@ -352,9 +352,9 @@
         {
             "type": "Microsoft.Sql/servers/securityAlertPolicies",
             "apiVersion": "2020-02-02-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "state": "Disabled"
@@ -363,10 +363,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/CreateIndex')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/CreateIndex')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -375,10 +375,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/DbParameterization')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/DbParameterization')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -387,10 +387,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/DefragmentIndex')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/DefragmentIndex')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -399,10 +399,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/DropIndex')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/DropIndex')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Disabled"
@@ -411,10 +411,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/advisors",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/ForceLastGoodPlan')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/ForceLastGoodPlan')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "autoExecuteValue": "Enabled"
@@ -423,11 +423,11 @@
         {
             "type": "Microsoft.Sql/servers/databases/auditingPolicies",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/Default')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "auditingState": "Disabled"
@@ -436,10 +436,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/auditingSettings",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 0,
@@ -451,10 +451,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "weeklyRetention": "PT0S",
@@ -466,10 +466,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
             "apiVersion": "2017-10-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 7
@@ -478,10 +478,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/extendedAuditingSettings",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "retentionDays": 0,
@@ -493,11 +493,11 @@
         {
             "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/Default')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "state": "Enabled"
@@ -506,10 +506,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
             "apiVersion": "2020-02-02-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "state": "Disabled"
@@ -518,11 +518,11 @@
         {
             "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
             "apiVersion": "2014-04-01",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/current')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/current')]",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "status": "Enabled"
@@ -531,10 +531,10 @@
         {
             "type": "Microsoft.Sql/servers/databases/vulnerabilityAssessments",
             "apiVersion": "2017-03-01-preview",
-            "name": "[concat(parameters('servers_example_sonartest_name'), '/sonar/Default')]",
+            "name": "[concat(parameters('SQL Server Name'), '/sonar/Default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_example_sonartest_name'), 'sonar')]",
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_example_sonartest_name'))]"
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('SQL Server Name'), 'sonar')]",
+                "[resourceId('Microsoft.Sql/servers', parameters('SQL Server Name'))]"
             ],
             "properties": {
                 "recurringScans": {
