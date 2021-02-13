@@ -9,7 +9,7 @@
         },
         "siteLocation": {
             "type": "string",
-            "defaultValue": "[parameters('siteLocation')]"
+            "defaultValue": "East US 2"
         },
         "siteName": {
             "type": "string",
@@ -65,14 +65,23 @@
             }
         },
         "sqluser":{
-            "type": "string"
+            "type": "string",
+            "metadata": {
+             "description": "Admin User for SQL Server"
+            }
         },
         "sqlpass":{
-            "type": "securestring"
+            "type": "securestring",
+            "metadata": {
+                "description": "SQL Password"
+            }
         },
         "servers_example_sonartest_name": {
             "defaultValue": "example-sonartest",
-            "type": "String"
+            "type": "String",
+            "metadata": {
+                "description": "SQL Server Name, this must be unique across azure"
+            }
         }
     },
     "variables": {
@@ -90,6 +99,21 @@
                 "administratorLoginPassword": "[parameters('sqlpass')]",
                 "version": "12.0",
                 "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "microsoft.insights/components",
+            "apiVersion": "2018-05-01-preview",
+            "name": "ai-sonartest",
+            "location": "[parameters('siteLocation')]",
+            "kind": "web",
+            "properties": {
+                "Application_Type": "web",
+                "Flow_Type": "Redfield",
+                "Request_Source": "IbizaAIExtension",
+                "RetentionInDays": 90,
+                "publicNetworkAccessForIngestion": "Enabled",
+                "publicNetworkAccessForQuery": "Enabled"
             }
         },
         {
@@ -573,7 +597,7 @@
                         "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
                     ],
                     "properties": {
-                        "Deployment_Telemetry_Instrumentation_Key": "[parameters('deploymentTelemetryKey')]",
+                        "Deployment_Telemetry_Instrumentation_Key": "[reference(resourceId('Microsoft.Insights/components', 'ai-sonartest'), '2014-04-01').InstrumentationKey]",
                         "SonarQubeEdition": "[parameters('SonarQube Edition')]",
                         "SonarQubeVersion": "[parameters('SonarQube Version')]",
                         "sonar.jdbc.url" :"[variables('sqlurl')]",
