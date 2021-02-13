@@ -58,12 +58,6 @@
                 "description": "Specific version of SQ to download e.g. 7.9.1 or 8.0. Leave blank or set to 'Latest' for most recent version."
             }
         },
-        "deploymentTelemetryKey":{
-            "type": "string",
-            "metadata": {
-                "description": "app insights telemetry key"
-            }
-        },
         "sqluser":{
             "type": "string",
             "metadata": {
